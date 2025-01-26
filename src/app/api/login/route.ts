@@ -7,7 +7,7 @@ interface ILoginBody {
 }
 
 //Database
-const users = {
+const user = {
   id: 1,
   email: "abc@gmail.com",
   password: "12345678",
@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   }
 
   //Check if user email or password exists
-  if (body.email !== users.email || body.password !== users.password) {
+  if (body.email !== user.email || body.password !== user.password) {
     return NextResponse.json(
       { success: false, message: "Email or Password is invalid!" },
       { status: 404 }
@@ -39,8 +39,8 @@ export async function POST(request: NextRequest) {
 
   const token = jwt.sign(
     {
-      email: users.email,
-      id: users.id,
+      email: user.email,
+      id: user.id,
     },
     secretKey,
     {
